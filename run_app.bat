@@ -1,0 +1,3 @@
+@echo off
+echo Opening Smart Attendance System...
+start "" "d:\Final-Year\frontend\index.html"

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Smart Classroom Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Student dashboard theme: same as faculty — #ff7473 and white */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --bg-card: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-color: #e1e4e8;
+            --primary-color: #ff7473;
+            --secondary-color: #20b1ab;
+        }
+        body { background: #ffffff; color: var(--text-primary); }
+        #dashboardScreen { background: #ffffff; }
+        .sidebar {
+            background: #ff7473;
+            border-right-color: rgba(255,255,255,0.2);
+        }
+        .sidebar-header { border-bottom-color: rgba(255,255,255,0.2); }
+        .sidebar-header .logo-icon { color: #ffffff; }
+        .sidebar-header .logo-text { color: #ffffff; }
+        .sidebar-nav .nav-item { color: rgba(255,255,255,0.85); }
+        .sidebar-nav .nav-item:hover { background: rgba(255,255,255,0.15); color: #ffffff; }
+        .sidebar-nav .nav-item.active { background: #ffffff; color: #ff7473; }
+        .sidebar-footer { border-top-color: rgba(255,255,255,0.2); }
+        .user-name, .user-role { color: #ffffff; }
+        .btn-logout { color: rgba(255,255,255,0.9); }
+        .btn-logout:hover { background: rgba(255,255,255,0.15); color: #ffffff; }
+        .user-avatar { background: rgba(255,255,255,0.25); color: #ffffff; }
+        .main-content { background: #ffffff; }
+        .top-bar { background: #ffffff; border-bottom-color: var(--border-color); }
+        .card { background: #ffffff; border-color: var(--border-color); }
+        .gps-status { background: #f8f9fa; border-color: var(--border-color); color: var(--text-primary); }
+        .btn-secondary { background: #f8f9fa; color: var(--text-primary); border-color: var(--border-color); }
+        .btn-secondary:hover { background: #e9ecef; border-color: #ff7473; }
+        .student-toast { background: #2c3e50; color: #ffffff; box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    </style>
+    <style>
+        /* Enhanced Login/Registration Styles */
+        .auth-container {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff7473 0%, #20b1ab 100%);
+            opacity: 0.05;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border: 1px solid #e1e4e8;
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid #e1e4e8;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .auth-logo {
+            width: 80px;
+            height: 80px;
+            background: #ff7473;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 24px rgba(255, 116, 115, 0.3);
+        }
+
+        .auth-logo svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+        }
+
+        .auth-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .auth-subtitle {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-input {
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #20b1ab;
+            box-shadow: 0 0 0 4px rgba(32, 177, 171, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-auth {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn-primary {
+            background: #ff7473;
+            color: white;
+            box-shadow: 0 8px 24px rgba(255, 116, 115, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #20b1ab;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(32, 177, 171, 0.35);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+            transform: translateY(-1px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .auth-switch-text {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .auth-switch-link {
+            color: #ff7473;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .auth-switch-link:hover {
+            color: #20b1ab;
+            text-decoration: underline;
+        }
+
+        .auth-message {
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .auth-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .auth-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .auth-message.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .password-strength-bar.weak {
+            width: 33%;
+            background: #ef4444;
+        }
+
+        .password-strength-bar.medium {
+            width: 66%;
+            background: #f59e0b;
+        }
+
+        .password-strength-bar.strong {
+            width: 100%;
+            background: #10b981;
+        }
+
+        .password-requirements {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .requirement.met {
+            color: #10b981;
+        }
+
+        .requirement-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: white;
+        }
+
+        .requirement.met .requirement-icon {
+            background: #10b981;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            .auth-card {
+                padding: 32px 24px;
+                margin: 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-title {
+                font-size: 24px;
+            }
+        }
+
+        /* Screen visibility */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Dashboard Screen (Only Dashboard - No Login/Registration) -->
+    <div id="dashboardScreen" class="screen active">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path
+                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    <span class="logo-text">Student Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="classes">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span>Available Classes</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="active-attendance">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Active Session</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="history">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span>My History</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <span id="userInitials">S</span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Student Name</div>
+                        <div class="user-role" id="userRoll">MCA2024001</div>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="btn-logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h2 id="pageTitle">Available Classes</h2>
+                    <p id="pageSubtitle">Select a class to mark attendance</p>
+                </div>
+                <div class="top-bar-actions">
+                    <div id="gpsStatus" class="gps-status">
+                        <span class="status-dot"></span>
+                        <span id="gpsText">GPS: Waiting...</span>
+                    </div>
+                    <button class="btn-secondary" id="refreshBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Classes View -->
+            <div id="classesView" class="view active">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="classesListContainer" class="grid-container">
+                            <div class="loading">Loading available classes...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Attendance View -->
+            <div id="active-attendanceView" class="view">
+                <div class="active-session-container" id="activeSessionContainer">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3>No Active Session</h3>
+                        <p>Join a class from the "Available Classes" tab to start marking attendance.</p>
+                        <button class="btn-primary" onclick="switchView('classes')">View Classes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History View -->
+            <div id="historyView" class="view">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>My Attendance History</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="historyListContainer">
+                            <div class="loading">Loading history...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Active Session Template (Hidden) -->
+    <template id="activeSessionTemplate">
+        <div class="session-card">
+            <div class="session-header">
+                <div class="session-title">
+                    <h2 class="class-name"></h2>
+                    <div class="faculty-name"></div>
+                </div>
+                <div class="session-timer">
+                    <span class="timer-label">Duration</span>
+                    <span class="timer-value">00:00:00</span>
+                </div>
+            </div>
+
+            <div class="session-status-bar">
+                <div class="status-item">
+                    <span class="status-label">Status</span>
+                    <span class="status-value status-in-progress">In Progress</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Distance</span>
+                    <span class="status-value distance-value">Calculating...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Next Ping</span>
+                    <span class="status-value next-ping-value">--</span>
+                </div>
+            </div>
+
+            <div class="ping-log-container">
+                <h3>Live Activity Log</h3>
+                <div class="ping-log">
+                    <!-- Logs go here -->
+                </div>
+            </div>
+
+            <div class="session-actions">
+                <button class="btn-danger btn-block" id="endSessionBtn">
+                    End Session (Exit Class)
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.14.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script src="face-embedding.js"></script>
+    <script src="student-app.js"></script>
+
+    <!-- Webcam Attendance Modal -->
+    <div id="webcamModal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9999; align-items:center; justify-content:center;">
+        <div
+            style="background:#fff; border-radius:20px; padding:32px; width:min(520px,95vw); box-shadow:0 20px 60px rgba(0,0,0,0.4); position:relative; text-align:center;">
+            <button id="webcamClose"
+                style="position:absolute; top:14px; right:18px; background:none; border:none; font-size:22px; cursor:pointer; color:#64748b;">✕</button>
+            <h2 style="font-size:20px; font-weight:700; color:#2c3e50; margin-bottom:4px;">Mark Attendance</h2>
+            <p id="webcamSubject" style="font-size:14px; color:#64748b; margin-bottom:18px;"></p>
+
+            <div style="background:#000; border-radius:12px; overflow:hidden; margin-bottom:16px; position:relative;">
+                <video id="webcamFeed" autoplay playsinline
+                    style="width:100%; max-height:300px; display:block; object-fit:cover;"></video>
+                <canvas id="captureCanvas" style="display:none;"></canvas>
+            </div>
+
+            <p style="font-size:13px; color:#64748b; margin-bottom:12px;">Make sure your face is clearly visible in the
+                camera. Your face will be verified against your registered photo.</p>
+
+            <button id="captureBtn" style="
+                width:100%; padding:14px;
+                background:#ff7473; color:white;
+                border:none; border-radius:12px;
+                font-size:15px; font-weight:700; cursor:pointer;
+                transition: background 0.3s;
+            " onmouseover="this.style.background='#20b1ab'" onmouseout="this.style.background='#ff7473'">
+                📸 Capture & Mark Present
+            </button>
+
+            <div id="webcamStatus" style="margin-top:12px; font-size:14px; font-weight:500; min-height:20px;"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="studentToast" class="student-toast"></div>
+
+    <style>
+        .student-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            max-width: 320px;
+        }
+
+        .student-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .student-toast.error {
+            background: #dc2626;
+        }
+
+        .btn-present {
+            width: 100%;
+            padding: 12px;
+            background: #d1fae5;
+            color: #065f46;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn-secondary:hover { background: var(--bg-tertiary); border-color: var(--primary-color); }
+    </style>
+</body>
+
+
+</html>

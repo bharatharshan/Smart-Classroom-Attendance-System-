@@ -1,0 +1,236 @@
+/* Homepage – professional layout with animations */
+.presence-home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--presence-bg, #f8fafc);
+}
+
+.presence-home__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--presence-primary, #ff7473) 0%, var(--presence-secondary, #20b1ab) 100%);
+  opacity: 0.08;
+  animation: presence-bg-shift 18s ease-in-out infinite alternate;
+}
+
+@keyframes presence-bg-shift {
+  0% { opacity: 0.06; transform: scale(1); }
+  100% { opacity: 0.12; transform: scale(1.05); }
+}
+
+/* Floating shapes for depth */
+.presence-home__shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.presence-home__shapes::before,
+.presence-home__shapes::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 116, 115, 0.15), rgba(32, 177, 171, 0.1));
+  animation: presence-float 20s ease-in-out infinite;
+}
+
+.presence-home__shapes::before {
+  width:  min(60vw, 400px);
+  height: min(60vw, 400px);
+  top: -20%;
+  right: -10%;
+  animation-delay: 0s;
+}
+
+.presence-home__shapes::after {
+  width:  min(40vw, 280px);
+  height: min(40vw, 280px);
+  bottom: -15%;
+  left: -10%;
+  animation-delay: -8s;
+}
+
+@keyframes presence-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  33% { transform: translate(20px, -15px) scale(1.02); opacity: 0.8; }
+  66% { transform: translate(-15px, 10px) scale(0.98); opacity: 0.5; }
+}
+
+.presence-home__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  max-width: 560px;
+  animation: presence-content-in 0.8s ease-out both;
+}
+
+@keyframes presence-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.presence-home__logo {
+  margin-bottom: 1.5rem;
+  animation: presence-logo-in 0.6s ease-out 0.15s both;
+}
+
+@keyframes presence-logo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.presence-home__logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, var(--presence-primary, #ff7473), var(--presence-secondary, #20b1ab));
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 800;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(255, 116, 115, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.presence-home__logo-icon:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 48px rgba(255, 116, 115, 0.4);
+}
+
+.presence-home__title {
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  font-weight: 800;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  animation: presence-title-in 0.6s ease-out 0.25s both;
+}
+
+@keyframes presence-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.presence-home__subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--presence-primary, #ff7473);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+  animation: presence-subtitle-in 0.5s ease-out 0.35s both;
+}
+
+@keyframes presence-subtitle-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.presence-home__description {
+  font-size: 1rem;
+  color: var(--presence-text-muted, #64748b);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+  animation: presence-desc-in 0.5s ease-out 0.45s both;
+}
+
+@keyframes presence-desc-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.presence-home__actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: presence-actions-in 0.6s ease-out 0.55s both;
+}
+
+@keyframes presence-actions-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.presence-home__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 200px;
+  padding: 1.85rem 2rem;
+  border: 2px solid var(--presence-border, #e2e8f0);
+  border-radius: var(--presence-radius-lg, 20px);
+  background: var(--presence-card, #fff);
+  color: var(--presence-text, #1e293b);
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+}
+
+.presence-home__btn:hover {
+  transform: translateY(-6px);
+  border-color: var(--presence-primary, #ff7473);
+  box-shadow: 0 16px 40px rgba(255, 116, 115, 0.22);
+}
+
+.presence-home__btn--student:hover {
+  border-color: var(--presence-primary, #ff7473);
+  box-shadow: 0 16px 40px rgba(255, 116, 115, 0.22);
+}
+
+.presence-home__btn--faculty:hover {
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 16px 40px rgba(32, 177, 171, 0.22);
+}
+
+.presence-home__btn--admin:hover {
+  border-color: var(--presence-admin, #0769fe);
+  box-shadow: 0 16px 40px rgba(7, 105, 254, 0.22);
+}
+
+.presence-home__btn-icon {
+  font-size: 2.75rem;
+  transition: transform 0.3s ease;
+}
+
+.presence-home__btn:hover .presence-home__btn-icon {
+  transform: scale(1.08);
+}

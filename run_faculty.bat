@@ -1,0 +1,3 @@
+@echo off
+echo Opening Faculty Dashboard...
+start "" "d:\Final-Year\frontend\faculty-dashboard.html"

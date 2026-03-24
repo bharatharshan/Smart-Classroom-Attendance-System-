@@ -1,0 +1,1017 @@
+/* Faculty Dashboard – sidebar + main content (PRESENCE+ theme) */
+.faculty-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: var(--presence-bg, #f8fafc);
+  gap: 0;
+}
+
+/* Sidebar: fixed to viewport – Faculty = green */
+.faculty-dashboard__sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  flex-shrink: 0;
+  background: var(--presence-secondary, #20b1ab);
+  padding: 30px 20px;
+  box-shadow: 4px 0 24px rgba(32, 177, 171, 0.25);
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.faculty-dashboard__faculty-info {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.faculty-dashboard__avatar {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.faculty-dashboard__name {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.faculty-dashboard__email {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.faculty-dashboard__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.faculty-dashboard__nav-item {
+  margin-bottom: 10px;
+}
+
+.faculty-dashboard__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  font-size: 15px;
+  text-align: left;
+}
+
+.faculty-dashboard__nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.faculty-dashboard__nav-link.active {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--presence-secondary, #20b1ab);
+}
+
+.faculty-dashboard__nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.faculty-dashboard__main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 280px;
+  padding: 32px 36px 40px 36px;
+  overflow-y: auto;
+  background: var(--presence-bg, #f8fafc);
+  position: relative;
+  min-height: 100vh;
+}
+
+.faculty-dashboard__content-header {
+  background: var(--presence-card, #fff);
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 10px;
+}
+
+.faculty-dashboard__page-subtitle {
+  color: var(--presence-text-muted, #64748b);
+  font-size: 16px;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.faculty-dashboard__header-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Stats */
+.faculty-dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.faculty-dashboard__stat-card {
+  background: var(--presence-card, #fff);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  border-radius: 15px;
+  padding: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.faculty-dashboard__stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(32, 177, 171, 0.2);
+}
+
+.faculty-dashboard__stat-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--presence-secondary, #20b1ab);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.faculty-dashboard__stat-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.faculty-dashboard__stat-info h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 5px;
+}
+
+.faculty-dashboard__stat-info p {
+  color: var(--presence-text-muted, #64748b);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Page content */
+.faculty-dashboard__page {
+  display: none;
+}
+
+.faculty-dashboard__page.active {
+  display: block;
+}
+
+/* View Timetable */
+.faculty-dashboard__timetable-wrap {
+  background: var(--presence-card, #fff);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__timetable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.faculty-dashboard__timetable-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--presence-text, #1e293b);
+}
+
+.faculty-dashboard__timetable-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--presence-text-muted, #64748b);
+  font-size: 14px;
+}
+
+.faculty-dashboard__timetable-grid {
+  overflow-x: auto;
+  border: 1px solid var(--presence-border, #e2e8f0);
+  border-radius: 10px;
+}
+
+.faculty-dashboard__timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.faculty-dashboard__timetable-table th,
+.faculty-dashboard__timetable-table td {
+  border: 1px solid var(--presence-border, #e2e8f0);
+  padding: 12px 8px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.faculty-dashboard__timetable-table th {
+  background: var(--presence-secondary, #20b1ab);
+  color: white;
+  font-weight: 600;
+}
+
+.faculty-dashboard__period-th {
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.faculty-dashboard__period-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.faculty-dashboard__period-time {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+.faculty-dashboard__timetable-table td {
+  background: var(--presence-card, #fff);
+}
+
+/* Attendance */
+.faculty-dashboard__attendance-wrap {
+  background: var(--presence-card, #fff);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__attendance-filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.faculty-dashboard__filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faculty-dashboard__filter-label {
+  font-weight: 600;
+  color: var(--presence-text, #1e293b);
+  font-size: 14px;
+}
+
+.faculty-dashboard__filter-select,
+.faculty-dashboard__filter-input {
+  padding: 8px 12px;
+  border: 2px solid var(--presence-border, #e2e8f0);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--presence-card, #fff);
+  color: var(--presence-text, #1e293b);
+}
+
+.faculty-dashboard__attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.faculty-dashboard__attendance-table th,
+.faculty-dashboard__attendance-table td {
+  border: 1px solid var(--presence-border, #e2e8f0);
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.faculty-dashboard__attendance-table th {
+  background: var(--presence-secondary, #20b1ab);
+  color: white;
+  font-weight: 600;
+}
+
+.faculty-dashboard__no-data {
+  text-align: center;
+  padding: 40px;
+  color: var(--presence-text-muted, #64748b);
+}
+
+/* My Classes — Recent */
+.faculty-dashboard__recent-section {
+  margin-bottom: 32px;
+}
+
+.faculty-dashboard__recent-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 20px;
+}
+
+.faculty-dashboard__recent-empty {
+  font-size: 14px;
+  color: var(--presence-text-muted, #64748b);
+  padding: 16px;
+  background: var(--presence-bg, #f8fafc);
+  border-radius: 12px;
+  border: 1px dashed var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__recent-list-wrap {
+  margin-top: 4px;
+}
+
+.faculty-dashboard__recent-classes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.faculty-dashboard__recent-classes-table th,
+.faculty-dashboard__recent-classes-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+  vertical-align: middle;
+}
+
+.faculty-dashboard__recent-classes-table th {
+  background: var(--presence-secondary, #20b1ab);
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.faculty-dashboard__recent-classes-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.faculty-dashboard__recent-classes-table__actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.faculty-dashboard__recent-class-name {
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+}
+
+.faculty-dashboard__recent-class-subject {
+  font-size: 13px;
+  color: var(--presence-text-muted, #64748b);
+  margin-top: 4px;
+}
+
+.faculty-dashboard__recent-view-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--presence-secondary, #20b1ab);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.faculty-dashboard__recent-view-btn:hover {
+  filter: brightness(1.05);
+}
+
+.faculty-dashboard__recent-view-btn:active {
+  transform: scale(0.98);
+}
+
+.faculty-dashboard__panel-class-meta {
+  font-size: 14px;
+  color: var(--presence-text-muted, #64748b);
+  margin: -8px 0 12px;
+}
+
+.faculty-dashboard__panel-hint {
+  font-size: 13px;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 16px;
+}
+
+.faculty-dashboard__table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__last-session-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.faculty-dashboard__last-session-table th,
+.faculty-dashboard__last-session-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__last-session-table th {
+  background: var(--presence-secondary, #20b1ab);
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.faculty-dashboard__last-session-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.faculty-dashboard__status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.faculty-dashboard__status-badge--on-time {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.faculty-dashboard__status-badge--late {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.faculty-dashboard__status-badge--absent {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.faculty-dashboard__status-badge--in-progress {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.faculty-dashboard__status-badge--none {
+  background: var(--presence-bg, #f1f5f9);
+  color: var(--presence-text-muted, #64748b);
+}
+
+/* My Classes */
+.faculty-dashboard__classes-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.faculty-dashboard__class-list-card {
+  background: var(--presence-card, #fff);
+  border-radius: 15px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.faculty-dashboard__class-list-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 16px;
+}
+
+.faculty-dashboard__timetable-class-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--presence-bg, #f8fafc);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.faculty-dashboard__timetable-class-row.selected {
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 4px 12px rgba(32, 177, 171, 0.2);
+}
+
+.faculty-dashboard__timetable-class-row-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.faculty-dashboard__timetable-class-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+}
+
+.faculty-dashboard__timetable-class-subject {
+  font-size: 14px;
+  color: var(--presence-text, #334155);
+  margin-top: 4px;
+}
+
+.faculty-dashboard__timetable-class-meta {
+  font-size: 13px;
+  color: var(--presence-text-muted, #64748b);
+  margin-top: 8px;
+}
+
+.faculty-dashboard__timetable-class-meta-sep {
+  opacity: 0.7;
+}
+
+.faculty-dashboard__timetable-enroll-btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--presence-secondary, #20b1ab);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.faculty-dashboard__timetable-enroll-btn:hover {
+  filter: brightness(1.05);
+}
+
+.faculty-dashboard__timetable-enroll-btn:active {
+  transform: scale(0.98);
+}
+
+/* Legacy class card (if reused elsewhere) */
+.faculty-dashboard__class-card {
+  background: var(--presence-bg, #f8fafc);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.faculty-dashboard__class-card:hover,
+.faculty-dashboard__class-card.selected {
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 4px 12px rgba(32, 177, 171, 0.2);
+}
+
+.faculty-dashboard__class-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 6px;
+}
+
+.faculty-dashboard__class-meta {
+  font-size: 13px;
+  color: var(--presence-text-muted, #64748b);
+}
+
+/* My Classes — enrolled students modal (replaces side panel) */
+.faculty-dashboard__class-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: faculty-dashboard-fade-in 0.15s ease;
+}
+
+@keyframes faculty-dashboard-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.faculty-dashboard__class-modal {
+  background: var(--presence-card, #fff);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  max-width: min(960px, 100%);
+  width: 100%;
+  max-height: min(85vh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.faculty-dashboard__class-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 12px;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__class-modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  line-height: 1.3;
+  padding-right: 8px;
+}
+
+.faculty-dashboard__class-modal-close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--presence-bg, #f1f5f9);
+  color: var(--presence-text, #334155);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.faculty-dashboard__class-modal-close:hover {
+  background: var(--presence-border, #e2e8f0);
+}
+
+.faculty-dashboard__class-modal-body {
+  padding: 16px 22px 22px;
+  overflow: auto;
+}
+
+.faculty-dashboard__class-modal-meta {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.faculty-dashboard__class-modal-hint {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.faculty-dashboard__class-modal-muted {
+  margin: 0;
+  color: var(--presence-text-muted, #64748b);
+  font-size: 14px;
+}
+
+.faculty-dashboard__loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.faculty-dashboard__spinner {
+  border: 3px solid var(--presence-border, #e2e8f0);
+  border-top-color: var(--presence-secondary, #20b1ab);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: faculty-dashboard-spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes faculty-dashboard-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Analytics charts (Recharts) */
+.faculty-charts {
+  margin-top: 2rem;
+}
+.faculty-charts__range {
+  font-size: 12px;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 1rem;
+}
+
+.faculty-charts__guide {
+  background: var(--presence-bg, #f8fafc);
+  border: 1px solid var(--presence-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 1rem 1.25rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.faculty-charts__guide-title {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--presence-text, #0f172a);
+}
+
+.faculty-charts__guide-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--presence-text, #334155);
+}
+
+.faculty-charts__guide-list li {
+  margin-bottom: 0.5rem;
+}
+
+.faculty-charts__guide-list li:last-child {
+  margin-bottom: 0;
+}
+
+.faculty-charts__explain {
+  margin: 0 0 0.75rem;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.faculty-charts__toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.faculty-charts__toolbar--global {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--presence-bg, #f8fafc);
+  border-radius: 10px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+/* Subject filter scoped to a single chart card (below title, above plot) */
+.faculty-charts__toolbar--in-card {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.faculty-charts__toolbar-hint {
+  font-size: 12px;
+  color: var(--presence-text-muted, #64748b);
+  flex-basis: 100%;
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 720px) {
+  .faculty-charts__toolbar--global .faculty-charts__toolbar-hint {
+    flex-basis: auto;
+    margin-top: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+.faculty-charts__toolbar label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--presence-text, #334155);
+}
+
+.faculty-charts__select {
+  min-width: 200px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+  background: #fff;
+  color: var(--presence-text, #0f172a);
+}
+
+.faculty-charts__legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1.75rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0.35rem 0 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.faculty-charts__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.faculty-charts__legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.faculty-charts__legend-text {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.faculty-charts__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+.faculty-charts__card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+.faculty-charts__card--full {
+  grid-column: 1 / -1;
+}
+
+.faculty-charts__card--split {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 900px) {
+  .faculty-charts__card--split {
+    grid-template-columns: 1fr;
+  }
+}
+.faculty-charts__title {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--presence-text, #0f172a);
+}
+.faculty-charts__sub {
+  margin: 0 0 0.75rem;
+  font-size: 12px;
+  color: var(--presence-text-muted, #64748b);
+}
+.faculty-charts__plot {
+  width: 100%;
+  min-height: 200px;
+}
+.faculty-charts__empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--presence-text-muted, #64748b);
+  font-size: 14px;
+}
+.faculty-charts__loading,
+.faculty-charts__error {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.faculty-charts__error {
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+.faculty-charts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+.faculty-charts__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+}
+.faculty-charts__list li strong {
+  color: var(--presence-secondary, #20b1ab);
+  flex-shrink: 0;
+}
+
+/* View Attendance — filters + table */
+.faculty-dashboard__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-end;
+}
+.faculty-dashboard__filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--presence-text, #0f172a);
+}
+.faculty-dashboard__filter span {
+  color: var(--presence-text-muted, #64748b);
+}
+.faculty-dashboard__filter select {
+  min-width: 260px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+  font-size: 14px;
+  background: #fff;
+}
+.faculty-dashboard__summary-meta {
+  font-size: 14px;
+  color: var(--presence-text, #0f172a);
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: #f0fdfa;
+  border-radius: 8px;
+  border: 1px solid rgba(32, 177, 171, 0.25);
+}
+.faculty-dashboard__hint {
+  font-size: 14px;
+  color: var(--presence-text-muted, #64748b);
+  margin: 0;
+}
+.faculty-dashboard__error-text {
+  color: #b91c1c;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+  .faculty-dashboard {
+    flex-direction: column;
+  }
+  .faculty-dashboard__sidebar {
+    width: 100%;
+    padding: 20px;
+  }
+  .faculty-dashboard__main {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Test</title>
+</head>
+<body>
+    <h1>Testing Login Flow</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <div id="result"></div>
+
+    <script>
+        async function testLogin() {
+            try {
+                const response = await fetch('http://localhost:8000/faculty/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        email: 'faculty@test.com', 
+                        password: 'test' 
+                    })
+                });
+
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <h3>Login Response:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                    <p>Status: ${response.status}</p>
+                `;
+
+                if (response.ok) {
+                    // Test user info
+                    const userResponse = await fetch('http://localhost:8000/faculty/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${data.access_token}`
+                        }
+                    });
+                    
+                    const userData = await userResponse.json();
+                    document.getElementById('result').innerHTML += `
+                        <h3>User Info:</h3>
+                        <pre>${JSON.stringify(userData, null, 2)}</pre>
+                        <p>User Status: ${userResponse.status}</p>
+                    `;
+                }
+
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

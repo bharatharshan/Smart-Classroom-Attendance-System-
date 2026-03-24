@@ -1,0 +1,97 @@
+.webcam-capture {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.webcam-capture__header {
+  margin-bottom: 1rem;
+}
+
+.webcam-capture__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  letter-spacing: -0.02em;
+}
+
+.webcam-capture__subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.webcam-capture__frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.webcam-capture__video {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.webcam-capture__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.75);
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.webcam-capture__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(241, 245, 249, 0.25);
+  border-top-color: var(--presence-primary, #ff7473);
+  border-radius: 50%;
+  animation: webcam-spin 0.75s linear infinite;
+}
+
+@keyframes webcam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.webcam-capture__actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.webcam-capture__cta {
+  min-width: 200px;
+}
+
+.webcam-capture__note {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.webcam-capture__error {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}

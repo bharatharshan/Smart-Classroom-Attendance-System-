@@ -1,0 +1,141 @@
+.dashboard {
+  min-height: 100vh;
+  background: var(--presence-bg, #f8fafc);
+}
+
+.dashboard__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1rem;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--presence-card, #fff);
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--presence-text, #1e293b);
+}
+
+.dashboard__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--presence-primary, #ff7473), var(--presence-secondary, #20b1ab));
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 10px;
+}
+
+.dashboard__user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--presence-text-muted, #64748b);
+}
+
+.dashboard__main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.dashboard__greeting {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 0.25rem;
+}
+
+.dashboard__sub {
+  font-size: 1rem;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 2rem;
+}
+
+.dashboard__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.dashboard__card {
+  display: block;
+  padding: 1.5rem;
+  background: var(--presence-card, #fff);
+  border: 2px solid var(--presence-border, #e2e8f0);
+  border-radius: var(--presence-radius-lg, 20px);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard__card:hover {
+  border-color: var(--presence-primary, #ff7473);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 116, 115, 0.15);
+}
+
+.dashboard--faculty .dashboard__card:hover {
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 8px 24px rgba(32, 177, 171, 0.15);
+}
+
+.dashboard__card--primary:hover { border-color: var(--presence-primary, #ff7473); }
+.dashboard__card--secondary:hover { border-color: var(--presence-secondary, #20b1ab); }
+
+.dashboard__card-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.dashboard__card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 0.25rem;
+}
+
+.dashboard__card p {
+  font-size: 0.875rem;
+  color: var(--presence-text-muted, #64748b);
+  margin: 0;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--presence-border, #e2e8f0);
+  color: var(--presence-text, #1e293b);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.btn-outline:hover {
+  border-color: var(--presence-primary, #ff7473);
+  color: var(--presence-primary, #ff7473);
+}
+
+.btn-sm { padding: 0.4rem 0.75rem; font-size: 0.8125rem; }

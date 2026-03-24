@@ -1,0 +1,13 @@
+@import './styles/theme.css';
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+body { font-family: system-ui, -apple-system, sans-serif; background: var(--presence-bg, #f8fafc); color: var(--presence-text, #1e293b); }
+#root { min-height: 100vh; }
+.btn { padding: 10px 16px; border-radius: var(--presence-radius, 12px); font-weight: 600; cursor: pointer; border: none; }
+.btn-primary { background: var(--presence-primary, #ff7473); color: var(--presence-white, #fff); }
+.btn-primary:hover { background: var(--presence-primary-dark, #e85e5d); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-secondary { background: var(--presence-secondary, #20b1ab); color: var(--presence-white, #fff); }
+.btn-secondary:hover { background: #1a9a94; }
+.btn-secondary:disabled { opacity: 0.6; cursor: not-allowed; }

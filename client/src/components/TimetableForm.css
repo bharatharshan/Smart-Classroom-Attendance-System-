@@ -1,0 +1,191 @@
+/* Timetable Form – professional PRESENCE+ styling */
+.timetable-form {
+  background: var(--presence-card, #fff);
+  border-radius: 20px;
+  padding: 36px 40px 40px 40px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--presence-border, #e2e8f0);
+}
+
+.timetable-form__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 10px;
+}
+
+.timetable-form__subtitle {
+  font-size: 0.9375rem;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.timetable-form__hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(32, 177, 171, 0.12), rgba(32, 177, 171, 0.06));
+  border: 1px solid rgba(32, 177, 171, 0.3);
+  border-radius: 14px;
+  color: var(--presence-secondary, #20b1ab);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin-bottom: 28px;
+  max-width: 100%;
+}
+
+.timetable-form__error {
+  padding: 14px 20px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 14px;
+  color: var(--presence-error, #ef4444);
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+}
+
+.timetable-form__grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+/* Period headers – Faculty green */
+.timetable-form__grid-head-cell {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  padding: 14px 12px;
+  background: linear-gradient(135deg, var(--presence-secondary, #20b1ab), #0d9488);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(32, 177, 171, 0.3);
+}
+
+/* Day labels – Faculty green tones */
+.timetable-form__day-label {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--presence-text, #1e293b);
+  padding: 16px 20px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: box-shadow 0.2s ease;
+}
+
+.timetable-form__day-label[data-day="Monday"],
+.timetable-form__day-label[data-day="Wednesday"],
+.timetable-form__day-label[data-day="Friday"] {
+  background: linear-gradient(135deg, rgba(32, 177, 171, 0.2), rgba(32, 177, 171, 0.08));
+  border-color: rgba(32, 177, 171, 0.4);
+  color: #0f766e;
+}
+
+.timetable-form__day-label[data-day="Tuesday"],
+.timetable-form__day-label[data-day="Thursday"] {
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.2), rgba(13, 148, 136, 0.08));
+  border-color: rgba(32, 177, 171, 0.4);
+  color: #0f766e;
+}
+
+.timetable-form__save {
+  padding: 14px 28px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  border-radius: 14px;
+  min-width: 200px;
+  box-shadow: 0 4px 16px rgba(32, 177, 171, 0.3);
+}
+
+.timetable-form__save:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Slot card – Faculty green accent */
+.timetable-slot {
+  background: var(--presence-card, #fff);
+  border: 2px solid var(--presence-border, #e2e8f0);
+  border-radius: 14px;
+  padding: 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid var(--presence-secondary, #20b1ab);
+}
+
+.timetable-slot:hover,
+.timetable-slot:focus-within {
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 6px 20px rgba(32, 177, 171, 0.18);
+}
+
+.timetable-slot__input,
+.timetable-slot__select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.9375rem;
+  border: 2px solid var(--presence-border, #e2e8f0);
+  border-radius: 10px;
+  background: var(--presence-card, #fff);
+  color: var(--presence-text, #1e293b);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 12px;
+}
+
+.timetable-slot__input:last-of-type {
+  margin-bottom: 12px;
+}
+
+.timetable-slot__select {
+  margin-bottom: 10px;
+}
+
+.timetable-slot__input::placeholder {
+  color: var(--presence-text-muted, #94a3b8);
+}
+
+.timetable-slot__input:focus,
+.timetable-slot__select:focus {
+  outline: none;
+  border-color: var(--presence-secondary, #20b1ab);
+  box-shadow: 0 0 0 3px rgba(32, 177, 171, 0.2);
+}
+
+.timetable-slot__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 8px;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.timetable-slot__coords {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(32, 177, 171, 0.08), rgba(32, 177, 171, 0.04));
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  color: var(--presence-text-muted, #64748b);
+  border: 1px solid rgba(32, 177, 171, 0.2);
+}
+
+.timetable-slot__coords strong {
+  color: var(--presence-text, #1e293b);
+}
+
+.timetable-form__loading {
+  text-align: center;
+  padding: 56px 24px;
+  color: var(--presence-text-muted, #64748b);
+  font-size: 1rem;
+}

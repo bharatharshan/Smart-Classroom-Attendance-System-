@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Portal | Smart Classroom Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff7473;
+            --accent-secondary: #20b1ab;
+            --text-primary: #2c3e50;
+            --text-secondary: #64748b;
+            --card-bg: #ffffff;
+            --card-bg-hover: #f8f9fa;
+            --border-color: #e1e4e8;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --error-color: #dc3545;
+            --hover-bg: #f8f9fa;
+            --modal-bg: #ffffff;
+            --input-bg: #ffffff;
+            --dropdown-bg: #ffffff;
+        }
+
+        /* Login Page Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff7473 0%, #20b1ab 100%);
+            opacity: 0.05;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border: 1px solid #e1e4e8;
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #ff7473, #20b1ab);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 20px rgba(255, 116, 115, 0.3);
+        }
+
+        .login-logo svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-input {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff7473;
+            box-shadow: 0 0 0 3px rgba(255, 116, 115, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .btn-login {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff7473, #20b1ab);
+            color: white;
+            box-shadow: 0 4px 14px rgba(255, 116, 115, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 116, 115, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .auth-switch-text {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .auth-switch-link {
+            color: #ff7473;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .auth-switch-link:hover {
+            color: #20b1ab;
+            text-decoration: underline;
+        }
+
+        .auth-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .auth-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .auth-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .auth-message.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+        }
+
+        .error-text {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            .login-card {
+                padding: 32px 24px;
+                margin: 16px;
+            }
+
+            .login-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path
+                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                </div>
+                <h1 class="login-title">Welcome Back</h1>
+                <p class="login-subtitle">Sign in to access your student portal</p>
+            </div>
+
+            <div id="loginError" class="auth-message error"></div>
+            <div id="loginSuccess" class="auth-message success"></div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input"
+                        placeholder="user@mca.christuniversity.in" required>
+                    <div id="emailError" class="error-text">Please enter a valid Christ University email address (e.g.,
+                        user@mca.christuniversity.in)</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-input"
+                        placeholder="Enter your password" required>
+                    <div id="passwordError" class="error-text">Password is required</div>
+                </div>
+
+                <button type="submit" class="btn-login btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    Sign In
+                </button>
+            </form>
+
+            <div class="auth-switch">
+                <p class="auth-switch-text">
+                    Don't have an account?
+                    <a class="auth-switch-link" href="student-register.html">Create Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Email validation for Christ University
+        function validateChristUniversityEmail(email) {
+            const christEmailRegex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)?christuniversity\.in$/;
+            return christEmailRegex.test(email);
+        }
+
+        // Show/hide error messages
+        function showError(fieldId, show = true, message = '') {
+            const field = document.getElementById(fieldId);
+            const errorText = document.getElementById(fieldId + 'Error');
+
+            if (!field || !errorText) {
+                console.warn(`Field or error element not found: ${fieldId}`);
+                return;
+            }
+
+            if (show) {
+                field.classList.add('input-error');
+                errorText.classList.add('show');
+                if (message) {
+                    errorText.textContent = message;
+                }
+            } else {
+                field.classList.remove('input-error');
+                errorText.classList.remove('show');
+            }
+        }
+
+        function showLoginError(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 5000);
+        }
+
+        function showLoginSuccess(message) {
+            const successDiv = document.getElementById('loginSuccess');
+            successDiv.textContent = message;
+            successDiv.classList.add('show');
+            setTimeout(() => successDiv.classList.remove('show'), 5000);
+        }
+
+        // Real-time email validation
+        document.getElementById('email').addEventListener('blur', function () {
+            const email = this.value.trim();
+            if (email && !validateChristUniversityEmail(email)) {
+                showError('email', true);
+            } else {
+                showError('email', false);
+            }
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Reset errors
+            showError('email', false);
+            showError('password', false);
+
+            // Validate email
+            if (!email) {
+                showError('email', true);
+                document.getElementById('emailError').textContent = 'Email is required';
+                return;
+            }
+
+            if (!validateChristUniversityEmail(email)) {
+                showError('email', true);
+                return;
+            }
+
+            // Validate password
+            if (!password) {
+                showError('password', true);
+                document.getElementById('passwordError').textContent = 'Password is required';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const token = data.access_token;
+
+                    // Fetch the full student profile using the token
+                    const meRes = await fetch('http://localhost:8000/auth/me', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    const studentData = meRes.ok ? await meRes.json() : null;
+
+                    localStorage.setItem('student_token', token);
+                    localStorage.setItem('student_user', JSON.stringify(studentData));
+
+                    showLoginSuccess('Login successful! Redirecting...');
+
+                    setTimeout(() => {
+                        window.location.href = 'student-dashboard.html';
+                    }, 1500);
+                } else {
+                    showLoginError(data.detail || 'Login failed');
+                }
+            } catch (error) {
+                showLoginError('Network error. Please try again.');
+            }
+        });
+
+        // Clear errors on input
+        document.getElementById('email').addEventListener('input', function () {
+            showError('email', false);
+        });
+
+        document.getElementById('password').addEventListener('input', function () {
+            showError('password', false);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+/* PRESENCE+ – Smart Attendance System – Theme */
+:root {
+  --presence-primary: #ff7473;
+  --presence-primary-dark: #e85e5d;
+  --presence-secondary: #20b1ab;
+  /* Admin primary color */
+  --presence-admin: #0769fe;
+  --presence-white: #ffffff;
+  --presence-bg: #f8fafc;
+  --presence-card: #ffffff;
+  --presence-text: #1e293b;
+  --presence-text-muted: #64748b;
+  --presence-border: #e2e8f0;
+  --presence-success: #10b981;
+  --presence-error: #ef4444;
+  --presence-shadow: 0 4px 20px rgba(255, 116, 115, 0.15);
+  --presence-radius: 12px;
+  --presence-radius-lg: 20px;
+}

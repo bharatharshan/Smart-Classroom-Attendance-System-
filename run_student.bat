@@ -1,0 +1,3 @@
+@echo off
+echo Opening Student Dashboard...
+start "" "d:\Final-Year\frontend\student-dashboard.html"

@@ -1,0 +1,251 @@
+/* Admin Portal – blue sidebar layout */
+.admin-portal {
+  display: flex;
+  min-height: 100vh;
+  background: var(--presence-bg, #f8fafc);
+}
+
+.admin-portal__sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: linear-gradient(180deg, var(--presence-admin, #0769fe) 0%, #0346a8 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.admin-portal__header {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-portal__header-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.admin-portal__nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.admin-portal__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.admin-portal__nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.admin-portal__nav-link.active {
+  background: white;
+  color: var(--presence-admin, #0769fe);
+}
+
+.admin-portal__nav-link svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.admin-portal__user {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-portal__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.admin-portal__user-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.admin-portal__main {
+  flex: 1;
+  overflow: auto;
+  padding: 1.5rem 2rem;
+}
+
+.admin-portal__main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--presence-text, #1e293b);
+  margin-bottom: 0.25rem;
+}
+
+.admin-portal__main-sub {
+  font-size: 0.9375rem;
+  color: var(--presence-text-muted, #64748b);
+  margin-bottom: 1.5rem;
+}
+
+.admin-portal__card {
+  background: var(--presence-card, #fff);
+  border-radius: 16px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.admin-portal__card:hover {
+  box-shadow: 0 10px 30px rgba(7, 105, 254, 0.16);
+  border-color: rgba(7, 105, 254, 0.35);
+  transform: translateY(-2px);
+}
+
+.admin-portal__card--empty {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--presence-text-muted, #64748b);
+}
+
+/* Shared admin table styles */
+.admin-portal__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.admin-portal__table thead {
+  background: #f1f5f9;
+}
+
+.admin-portal__table th,
+.admin-portal__table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--presence-border, #e2e8f0);
+  text-align: left;
+}
+
+.admin-portal__table th {
+  font-weight: 600;
+  color: var(--presence-text, #1e293b);
+}
+
+.admin-portal__table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-portal__form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.admin-portal__field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--presence-text, #1e293b);
+}
+
+.admin-portal__field input,
+.admin-portal__field select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--presence-border, #e2e8f0);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-portal__field input:focus,
+.admin-portal__field select:focus {
+  border-color: var(--presence-admin, #0769fe);
+  box-shadow: 0 0 0 1px rgba(7, 105, 254, 0.25);
+}
+
+.admin-portal__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.admin-portal__btn {
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.admin-portal__btn--primary {
+  background: var(--presence-admin, #0769fe);
+  color: white;
+  border-color: var(--presence-admin, #0769fe);
+}
+
+.admin-portal__btn--primary:hover {
+  box-shadow: 0 8px 20px rgba(7, 105, 254, 0.25);
+  transform: translateY(-1px);
+}
+
+.admin-portal__btn--ghost {
+  background: white;
+  color: var(--presence-text-muted, #64748b);
+  border-color: var(--presence-border, #e2e8f0);
+}
+
+.admin-portal__btn--ghost:hover {
+  background: #f8fafc;
+}
+
+.admin-portal__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.admin-portal__badge--success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+
+.admin-portal__badge--muted {
+  background: rgba(148, 163, 184, 0.12);
+  color: #64748b;
+}
